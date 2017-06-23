@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+<address>
+    One Microsoft Way<br />
+    Redmond, WA 98052-6399<br />
+    <abbr title="Phone">P:</abbr>
+    425.555.0100
+</address>
+
+
+
+<div class="object one">
+    <a asp-area="" asp-controller="Merchandises" asp-action="Index">
+        <h1 class="object-htag-styling">Merchandise</h1>
+    </a>
+</div>
+<div class="object two">
+    <a asp-area="" asp-controller="Home" asp-action="Contact">
+        <h1 class="object-htag-styling">Contact</h1>
+    </a>
+</div>
+<div class="object three">
+    <a asp-area="" asp-controller="Customers" asp-action="Create">
+        <h1 class="object-htag-styling">Submit Inquiry</h1>
+    </a>
+</div>
+<div class="object four">
+    <a asp-area="" asp-controller="Home" asp-action="About">
+        <h1 class="object-htag-styling">Place Holder</h1>
+    </a>
+</div>
+<address>
+    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>

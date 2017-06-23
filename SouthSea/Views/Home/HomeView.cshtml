@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+@Layout=null
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/proto_site.css" />
+    <title>South C Pearls</title>
+</head>
+
+<body>
+     <div class="object one">
+        <a asp-area="" asp-controller="Merchandises" asp-action="Index">
+            <h1 class="object-htag-styling">Merchandise</h1>
+        </a>
+    </div>
+    <div class="object two">
+        <a asp-area="" asp-controller="Home" asp-action="Contact">
+            <h1 class="object-htag-styling">Contact</h1>
+        </a>
+    </div>
+    <div class="object three">
+        <a asp-area="" asp-controller="Customers" asp-action="Create">
+            <h1 class="object-htag-styling">Submit Inquiry</h1>
+        </a>
+    </div>
+    <div class="object four">
+        <a asp-area="" asp-controller="Home" asp-action="About">
+            <h1 class="object-htag-styling">@ViewData["Message"]</h1>
+        </a>
+    </div>
+    @*<footer>
+        <p>&copy; @DateTime.Today.Year - SouthCPearls</p>
+    </footer>*@
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
