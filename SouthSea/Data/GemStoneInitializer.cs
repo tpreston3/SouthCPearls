@@ -19,7 +19,7 @@ namespace SouthSea.Data
             {
             new Models.GemStone
             {
-                TypeStone="Carnilian"
+                TypeStone="Carnilian Stone"
             },
 
             new Models.GemStone
