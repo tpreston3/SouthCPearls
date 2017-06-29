@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SouthSea.Migrations
 {
-    public partial class NewDBInstance : Migration
+    public partial class ReInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,7 @@ namespace SouthSea.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Date = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: true),
                     Description = table.Column<string>(nullable: false),
                     Image = table.Column<string>(nullable: false),
                     ItemName = table.Column<string>(nullable: false),
@@ -44,12 +44,33 @@ namespace SouthSea.Migrations
                 {
                     table.PrimaryKey("PK_Merchandise", x => x.ID);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "GemStone",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false),
+                    TypeStone = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GemStone", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_GemStone_Merchandise_ID",
+                        column: x => x.ID,
+                        principalTable: "Merchandise",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Customer");
+
+            migrationBuilder.DropTable(
+                name: "GemStone");
 
             migrationBuilder.DropTable(
                 name: "Merchandise");

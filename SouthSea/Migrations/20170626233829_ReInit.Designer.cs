@@ -8,8 +8,8 @@ using SouthSea.Models;
 namespace SouthSea.Migrations
 {
     [DbContext(typeof(SouthSeaContext))]
-    [Migration("20170618215812_nextMigration")]
-    partial class nextMigration
+    [Migration("20170626233829_ReInit")]
+    partial class ReInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,12 +37,23 @@ namespace SouthSea.Migrations
                     b.ToTable("Customer");
                 });
 
+            modelBuilder.Entity("SouthSea.Models.GemStone", b =>
+                {
+                    b.Property<int>("ID");
+
+                    b.Property<string>("TypeStone");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("GemStone");
+                });
+
             modelBuilder.Entity("SouthSea.Models.Merchandise", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Date");
+                    b.Property<DateTime?>("Date");
 
                     b.Property<string>("Description")
                         .IsRequired();
@@ -57,8 +68,6 @@ namespace SouthSea.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<DateTime>("TheDate");
-
                     b.Property<string>("Type")
                         .IsRequired();
 
@@ -67,6 +76,14 @@ namespace SouthSea.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Merchandise");
+                });
+
+            modelBuilder.Entity("SouthSea.Models.GemStone", b =>
+                {
+                    b.HasOne("SouthSea.Models.Merchandise", "Merchandises")
+                        .WithOne("GemStones")
+                        .HasForeignKey("SouthSea.Models.GemStone", "ID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

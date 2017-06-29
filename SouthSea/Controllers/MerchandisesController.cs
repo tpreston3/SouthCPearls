@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SouthSea.Models;
+using SouthSea.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
@@ -58,12 +59,30 @@ namespace SouthSea.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,ItemName,Description,Type,GemStones,Image,Date,Length,Weight,Price")] Merchandise merchandise)
+        public async Task<IActionResult> Create([Bind("ID,ItemName,Description,Type,GemStones,Image,Date,Length,Weight,Price")]
+                                                Merchandise merchandise, ICollection<IFormFile> ImageFiles)
         {
-            
+
+            foreach (var file in ImageFiles)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                fileName = "\\images\\Merchandise\\" + fileName;
+                var path = Path.Combine(environment.WebRootPath, fileName);
+                //merchandise.Image = (Uri.TryCreate(path, UriKind.RelativeOrAbsolute,new Uri is fileName);
+            }
+
 
             if (ModelState.IsValid)
-            {
+               
+                {
+                if (ImageFiles != null)
+
+                {
+                    await Services.Upload.UploadFile(ImageFiles, environment);
+                    
+                    merchandise.Image = Services.Upload.UploadFile(ImageFiles);
+                }
+
                 _context.Add(merchandise);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

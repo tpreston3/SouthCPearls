@@ -38,7 +38,8 @@ namespace SouthSea.Migrations
 
             modelBuilder.Entity("SouthSea.Models.GemStone", b =>
                 {
-                    b.Property<int>("ID");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("TypeStone");
 
@@ -49,10 +50,9 @@ namespace SouthSea.Migrations
 
             modelBuilder.Entity("SouthSea.Models.Merchandise", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("ID");
 
-                    b.Property<int>("Date");
+                    b.Property<DateTime?>("Date");
 
                     b.Property<string>("Description")
                         .IsRequired();
@@ -63,27 +63,25 @@ namespace SouthSea.Migrations
                     b.Property<string>("ItemName")
                         .IsRequired();
 
-                    b.Property<int>("Length");
+                    b.Property<float>("Length");
 
                     b.Property<decimal>("Price");
-
-                    b.Property<DateTime>("TheDate");
 
                     b.Property<string>("Type")
                         .IsRequired();
 
-                    b.Property<int>("Weight");
+                    b.Property<float>("Weight");
 
                     b.HasKey("ID");
 
                     b.ToTable("Merchandise");
                 });
 
-            modelBuilder.Entity("SouthSea.Models.GemStone", b =>
+            modelBuilder.Entity("SouthSea.Models.Merchandise", b =>
                 {
-                    b.HasOne("SouthSea.Models.Merchandise", "Merchandises")
-                        .WithOne("GemStones")
-                        .HasForeignKey("SouthSea.Models.GemStone", "ID")
+                    b.HasOne("SouthSea.Models.GemStone", "GemStones")
+                        .WithOne("Merchandises")
+                        .HasForeignKey("SouthSea.Models.Merchandise", "ID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

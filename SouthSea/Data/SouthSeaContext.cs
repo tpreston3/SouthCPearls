@@ -15,7 +15,7 @@ namespace SouthSea.Models
         }
 
         public DbSet<SouthSea.Models.Merchandise> Merchandise { get; set; }
-
+        public DbSet<SouthSea.Models.GemStone> GemStone { get; set;  }
         public DbSet<SouthSea.Models.Customer> Customer { get; set; }
     }
 }

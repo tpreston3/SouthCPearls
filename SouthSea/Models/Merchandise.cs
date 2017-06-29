@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,22 +20,28 @@ namespace SouthSea.Models
         [Required]
         public string Type { get; set; }
         [Required]
-        [DataType(DataType.ImageUrl)]
         public string Image { get; set; }
+
         [DataType(DataType.DateTime)]
-        public int Date { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? Date { get; set; }
+
         [Display(Name = "Gem Stone Type")]
-        //public ICollection<GemStone> GemStones { get; set; }
         public GemStone GemStones { get; set; }
 
+        [NotMapped]
+        [DataType(DataType.DateTime)]
         public DateTime TheDate
         {
-            get { return TheDate; }
+            //get { return TheDate; }
             set { TheDate = DateTime.Now; }
         }
-                
-        public int Length { get; set; }
-        public int Weight { get; set; }
+        [Display(Name = "Length in inches")]
+        public float Length { get; set; }
+
+        [Display(Name = "Weight in grams")]
+        public float Weight { get; set; }
+
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 

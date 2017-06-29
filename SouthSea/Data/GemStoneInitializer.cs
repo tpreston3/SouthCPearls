@@ -2,117 +2,127 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SouthSea.Models;
 
 namespace SouthSea.Data
 {
     public class GemStoneInitializer
     {
 
-        public static void Initialize(Models.Merchandise context)
-        {
-            if (!context.GemStones.Equals(null))
-            {
-                return;
-            }
-            var gems = new Models.GemStone[]
+        public static void Initialize(SouthSeaContext context) { 
+            //if (!context.GemStone.Equals(null))
+            //{
+            //    return;
+            //}
 
-            {
-            new Models.GemStone
+            
+                var gems = new GemStone[]
+
+                {
+            new GemStone
             {
                 TypeStone="Carnilian Stone"
             },
 
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Hematites with Coral"
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Blue Moon Stone"
             },
 
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Amethyst Stone"
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Cherry Squarts"
             },
 
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Hematites with Turkoys"
 
             },
 
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Hematites with Pearl"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Tiger Eye"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Black Pearl"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Turquios"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Morano Stones"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Rose Squarts"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Sun Stones"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Red Corals"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Whole Light"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Black & White Pearls"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Puka Shell"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Moon Stone"
 
             },
-            new Models.GemStone
+            new GemStone
             {
                 TypeStone = "Jade"
 
             }
 
-            };
+                };
+            foreach (var g in gems)
+            {
+                context.GemStone.Add(g);
+
+            }
+
+            context.SaveChanges();
+
         }
 
         }

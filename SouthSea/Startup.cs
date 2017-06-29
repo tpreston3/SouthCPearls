@@ -17,6 +17,7 @@ namespace SouthSea
 {
     public class Startup
     {
+        
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -58,7 +59,7 @@ namespace SouthSea
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, SouthSeaContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -86,6 +87,14 @@ namespace SouthSea
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            //GemStoneInitializer.Initialize(context);
+            //MerchendiseInitializer.Initialize(context);
+            
         }
+
+        
+
     }
 }

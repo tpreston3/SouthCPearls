@@ -8,8 +8,8 @@ using SouthSea.Models;
 namespace SouthSea.Migrations
 {
     [DbContext(typeof(SouthSeaContext))]
-    [Migration("20170618192659_NewDBInstance")]
-    partial class NewDBInstance
+    [Migration("20170627005537_tryagain")]
+    partial class tryagain
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,12 +37,23 @@ namespace SouthSea.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("SouthSea.Models.Merchandise", b =>
+            modelBuilder.Entity("SouthSea.Models.GemStone", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Date");
+                    b.Property<string>("TypeStone");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("GemStone");
+                });
+
+            modelBuilder.Entity("SouthSea.Models.Merchandise", b =>
+                {
+                    b.Property<int>("ID");
+
+                    b.Property<DateTime?>("Date");
 
                     b.Property<string>("Description")
                         .IsRequired();
@@ -53,18 +64,26 @@ namespace SouthSea.Migrations
                     b.Property<string>("ItemName")
                         .IsRequired();
 
-                    b.Property<int>("Length");
+                    b.Property<float>("Length");
 
                     b.Property<decimal>("Price");
 
                     b.Property<string>("Type")
                         .IsRequired();
 
-                    b.Property<int>("Weight");
+                    b.Property<float>("Weight");
 
                     b.HasKey("ID");
 
                     b.ToTable("Merchandise");
+                });
+
+            modelBuilder.Entity("SouthSea.Models.Merchandise", b =>
+                {
+                    b.HasOne("SouthSea.Models.GemStone", "GemStones")
+                        .WithOne("Merchandises")
+                        .HasForeignKey("SouthSea.Models.Merchandise", "ID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
